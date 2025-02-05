@@ -33,6 +33,18 @@ namespace DeployWithDocker
 
             app.UseHttpsRedirection();
 
+            app.Use(async (context, next) =>
+            {
+                var referer = context.Request.Headers["Referer"].ToString();
+                if (!referer.StartsWith("https://client-1vew.onrender.com"))
+                {
+                    context.Response.StatusCode = 403; // Forbidden
+                    await context.Response.WriteAsync("Access denied");
+                    return;
+                }
+                await next();
+            });
+
             // Включаем CORS
             app.UseCors("AllowClient");
 

@@ -22,7 +22,7 @@ namespace DeployWithDocker.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public string Get()
         {
-            return "What's the weather?";
+            return "Freezing and Cool";
         }
 
         //public IEnumerable<WeatherForecast> Get()

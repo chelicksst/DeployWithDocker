@@ -14,9 +14,9 @@ namespace DeployWithDocker
             // Добавляем CORS
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowLocalhost", policy =>
+                options.AddPolicy("AllowClient", policy =>
                 {
-                    policy.WithOrigins("http://localhost:5173")  // Разрешаем запросы с вашего локального сервера
+                    policy.WithOrigins("https://client-1vew.onrender.com")  // Разрешаем запросы только с вашего нового клиента
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });
@@ -34,7 +34,7 @@ namespace DeployWithDocker
             app.UseHttpsRedirection();
 
             // Включаем CORS
-            app.UseCors("AllowLocalhost");
+            app.UseCors("AllowClient");
 
             app.UseAuthorization();
 
